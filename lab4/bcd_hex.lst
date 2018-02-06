@@ -37,8 +37,8 @@ ARM Macro Assembler    Page 1
    31 00000034 601D            STR              R5,[R3]
    32 00000036         STOP
    33 00000036 E7FE            B                STOP
-   34 00000038 00000032 
-                       BCD     DCD              0X32
+   34 00000038 00000100 
+                       BCD     DCD              0X100
    35 0000003C 00000000 
               00000000         AREA             mydata,DATA,READWRITE
    36 00000000 00000000 

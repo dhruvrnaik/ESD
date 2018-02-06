@@ -1,2 +1,2 @@
 Dependencies for Project 'lab4', Target 'Target 1': (DO NOT MODIFY !)
-F (.\bcd_hex.s)(0x5A7A1936)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx--list .\bcd_hex.lst --xref -o .\bcd_hex.o --depend .\bcd_hex.d)
+F (.\bcd_hex.s)(0x5A7A19EC)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx--list .\bcd_hex.lst --xref -o .\bcd_hex.o --depend .\bcd_hex.d)

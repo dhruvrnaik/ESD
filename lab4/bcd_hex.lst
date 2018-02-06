@@ -1,0 +1,144 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000         
+    5 00000000 10001000        DCD              0x10001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 ENTRY
+   10 00000000                 EXPORT           Reset_Handler
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000         
+   14 00000000 480E            LDR              R0,=BCD
+   15 00000002 6801            LDR              R1,[R0]
+   16 00000004 F04F 020F       LDR              R2,=0X0F
+   17 00000008 4B0D            LDR              R3,=RES
+   18 0000000A F04F 0401       MOV              R4,#1
+   19 0000000E F04F 0500       MOV              R5,#0
+   20 00000012 F04F 0708       MOV              R7,#8
+   21 00000016 F04F 080A       MOV              R8,#10
+   22 0000001A         UP
+   23 0000001A EA01 0602       AND              R6,R1,R2
+   24 0000001E FB06 5504       MLA              R5,R6,R4,R5
+   25 00000022 EA4F 1131       ROR              R1,#4
+   26 00000026 FB04 F408       MUL              R4,R8
+   27 0000002A F1A7 0701       SUB              R7,#1
+   28 0000002E F097 0F00       TEQ              R7,#0
+   29 00000032 D1F2            BNE              UP
+   30 00000034         
+   31 00000034 601D            STR              R5,[R3]
+   32 00000036         STOP
+   33 00000036 E7FE            B                STOP
+   34 00000038 00000032 
+                       BCD     DCD              0X32
+   35 0000003C 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   36 00000000 00000000 
+                       RES     DCD              0
+   37 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\bcd_he
+x.d -o.\bcd_hex.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\
+ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\bcd_hex.lst bcd_hex.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file bcd_hex.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file bcd_hex.s
+   Uses
+      At line 2 in file bcd_hex.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BCD 00000038
+
+Symbol: BCD
+   Definitions
+      At line 34 in file bcd_hex.s
+   Uses
+      At line 14 in file bcd_hex.s
+Comment: BCD used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file bcd_hex.s
+   Uses
+      At line 6 in file bcd_hex.s
+      At line 10 in file bcd_hex.s
+
+STOP 00000036
+
+Symbol: STOP
+   Definitions
+      At line 32 in file bcd_hex.s
+   Uses
+      At line 33 in file bcd_hex.s
+Comment: STOP used once
+UP 0000001A
+
+Symbol: UP
+   Definitions
+      At line 22 in file bcd_hex.s
+   Uses
+      At line 29 in file bcd_hex.s
+Comment: UP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file bcd_hex.s
+   Uses
+      None
+Comment: mycode unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RES 00000000
+
+Symbol: RES
+   Definitions
+      At line 36 in file bcd_hex.s
+   Uses
+      At line 17 in file bcd_hex.s
+Comment: RES used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 35 in file bcd_hex.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+342 symbols in table

@@ -31,7 +31,7 @@ ARM Macro Assembler    Page 1
    25 0000001C 460C            MOV              R4,R1
    26 0000001E 4601            MOV              R1,R0
    27 00000020 4620            MOV              R0,R4
-   28 00000022 F04F 0CCC       MOV              R12,#0XCC   ; R12 IS CC IF ANSW
+   28 00000022 F04F 0CEC       MOV              R12,#0XEC   ; R12 IS EC IF ANSW
                                                             ER IS NEGATIVE
    29 00000026         UP
    30 00000026 F000 020F       AND              R2,R0,#0X0F ; R2,R3 - storing t
@@ -62,16 +62,16 @@ ARM Macro Assembler    Page 1
    50 00000062 F8CB 6000       STR              R6,[R11]
    51 00000066         STOP
    52 00000066 E7FE            B                STOP
-   53 00000068 00001055 
+   53 00000068 20000001 
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-                       NUM1    DCD              0X1055
-   54 0000006C 00000757 
-                       NUM2    DCD              0X757
+                       NUM1    DCD              0X20000001
+   54 0000006C 00000033 
+                       NUM2    DCD              0X33
    55 00000070 00000000 
               00000000 
               00000000         AREA             mydata,DATA,READWRITE

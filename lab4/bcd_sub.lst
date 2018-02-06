@@ -1,0 +1,210 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;FILE - DHRUV/ESD/LAB3/BCD_SUB
+    2 00000000                 AREA             RESET,CODE,READONLY ;
+    3 00000000                 EXPORT           __Vectors
+    4 00000000         __Vectors
+    5 00000000         
+    6 00000000 10001000        DCD              0X10001000
+    7 00000004 00000000        DCD              Reset_Handler
+    8 00000008         
+    9 00000008                 AREA             mycode,CODE,READONLY
+   10 00000000                 ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         
+   13 00000000         Reset_Handler
+   14 00000000         
+   15 00000000 481B            LDR              R0,=NUM1
+   16 00000002 6800            LDR              R0,[R0]
+   17 00000004 491B            LDR              R1,=NUM2
+   18 00000006 6809            LDR              R1,[R1]
+   19 00000008 F04F 0708       MOV              R7,#8       ; 8 digit counter
+   20 0000000C F04F 0600       MOV              R6,#0       ;  storing result
+   21 00000010 F04F 0800       MOV              R8,#0       ; caryy
+   22 00000014 4288            CMP              R0,R1
+   23 00000016 F8DF B060       LDR              R11,=RES
+   24 0000001A D204            BHS              UP
+   25 0000001C 460C            MOV              R4,R1
+   26 0000001E 4601            MOV              R1,R0
+   27 00000020 4620            MOV              R0,R4
+   28 00000022 F04F 0CCC       MOV              R12,#0XCC   ; R12 IS CC IF ANSW
+                                                            ER IS NEGATIVE
+   29 00000026         UP
+   30 00000026 F000 020F       AND              R2,R0,#0X0F ; R2,R3 - storing t
+                                                            he extracted digit
+   31 0000002A F001 030F       AND              R3,R1,#0X0F
+   32 0000002E EA4F 1010       LSR              R0,#4
+   33 00000032 EA4F 1111       LSR              R1,#4
+   34 00000036 EBA2 0908       SUB              R9,R2,R8    ; SUBTRACT IF CARRY
+                                                             EXISTS FROM PREV 
+   35 0000003A 4599            CMP              R9,R3
+   36 0000003C         
+   37 0000003C DA04            BGE              down
+   38 0000003E F109 090A       ADD              R9,#0X0A    ; ADD 10 IF R2 SMAL
+                                                            LER THAN R1
+   39 00000042 F04F 0801       MOV              R8,#1       ; CARRY FROM LEFT I
+                                                            F R2 SMALLER THAN R
+                                                            1
+   40 00000046 DB01            BLT              d
+   41 00000048         down
+   42 00000048 F04F 0800       MOV              r8,#0
+   43 0000004C         d
+   44 0000004C EBA9 0903       SUB              R9,R3
+   45 00000050 EA46 0609       ORR              R6,R9
+   46 00000054 EA4F 1636       ROR              R6,#4
+   47 00000058 F1A7 0701       SUB              R7,#1
+   48 0000005C F097 0F00       TEQ              R7,#0
+   49 00000060 D1E1            BNE              UP
+   50 00000062 F8CB 6000       STR              R6,[R11]
+   51 00000066         STOP
+   52 00000066 E7FE            B                STOP
+   53 00000068 00001055 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                       NUM1    DCD              0X1055
+   54 0000006C 00000757 
+                       NUM2    DCD              0X757
+   55 00000070 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   56 00000000 00000000 
+                       RES     DCD              0
+   57 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\bcd_su
+b.d -o.\bcd_sub.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\
+ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\bcd_sub.lst ..\lab3\bc
+d_sub.S
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file ..\lab3\bcd_sub.S
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 3 in file ..\lab3\bcd_sub.S
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+NUM1 00000068
+
+Symbol: NUM1
+   Definitions
+      At line 53 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 15 in file ..\lab3\bcd_sub.S
+Comment: NUM1 used once
+NUM2 0000006C
+
+Symbol: NUM2
+   Definitions
+      At line 54 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 17 in file ..\lab3\bcd_sub.S
+Comment: NUM2 used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 7 in file ..\lab3\bcd_sub.S
+      At line 11 in file ..\lab3\bcd_sub.S
+
+STOP 00000066
+
+Symbol: STOP
+   Definitions
+      At line 51 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 52 in file ..\lab3\bcd_sub.S
+Comment: STOP used once
+UP 00000026
+
+Symbol: UP
+   Definitions
+      At line 29 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 24 in file ..\lab3\bcd_sub.S
+      At line 49 in file ..\lab3\bcd_sub.S
+
+d 0000004C
+
+Symbol: d
+   Definitions
+      At line 43 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 40 in file ..\lab3\bcd_sub.S
+Comment: d used once
+down 00000048
+
+Symbol: down
+   Definitions
+      At line 41 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 37 in file ..\lab3\bcd_sub.S
+Comment: down used once
+mycode 00000000
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+
+Symbol: mycode
+   Definitions
+      At line 9 in file ..\lab3\bcd_sub.S
+   Uses
+      None
+Comment: mycode unused
+8 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RES 00000000
+
+Symbol: RES
+   Definitions
+      At line 56 in file ..\lab3\bcd_sub.S
+   Uses
+      At line 23 in file ..\lab3\bcd_sub.S
+Comment: RES used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 55 in file ..\lab3\bcd_sub.S
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+345 symbols in table
